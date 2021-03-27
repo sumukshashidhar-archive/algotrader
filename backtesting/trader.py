@@ -1,4 +1,5 @@
 import math
+from stock import Stock
 class Trader:
 
 	def __init__(self):
@@ -6,18 +7,28 @@ class Trader:
 
 
 	def get_quote(self, ticker):
-		pass
+		return 500
 
 
 	def buy(self, ticker, volume):
 		current = self.get_quote(ticker)
 		total = math.ceil(current*volume)
 		if self.portfolio.liquid >= total:
-			pass
+			self.portfolio.liquid -= total
+			try:
+				self.portfolio.holdings[ticker].volume += volume
+			except:
+				self.portfolio.holdings[ticker] = Stock()
+			return True, f"Bought {volume} shares of {ticker} for a total of {total}. New balance is {self.portfolio.liquid}"
 		else:
 			return False, f"Insufficient Value: \nFunds Required:{total} \n funds available: {self.portfolio.liquid}"
-		pass
+		return
 
 
 	def sell(self, ticker, volume):
-		pass
+		current = self.get_quote(ticker)
+		total = math.ceil(current*volume)
+		self.portfolio.liquid += total
+		# remove from list of stocks
+		self.portfolio.holdings[ticker].volume -= volume
+		return
