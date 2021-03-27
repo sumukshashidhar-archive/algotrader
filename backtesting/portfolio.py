@@ -26,23 +26,3 @@ class Portfolio:
 		for i in self.holdings.keys():
 			v += self.holdings[i].get_value()
 
-		return v
-
-
-	
-
-		"""
-		Section needs to be planned before construction
-		"""
-
-	# def withdraw(self, requestamt):
-	# 	# allows you to withdraw money from your portfolio
-	# 	# this resets your pl statements as well, as the money in your account has changed
-	# 	if self.liquid >= requestamt:
-	# 		# enough funds exist for withdrawl
-	# 		self.plarray.append(self.pl)
-
-
-
-	# 	else:
-	# 		return False, "Not enough liquidity for withdrawl"
